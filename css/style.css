@@ -13,6 +13,7 @@ body {
     color: #fff;
 }
 
+<<<<<<< HEAD
 .calculator__display {
     color: #fff;
 }
@@ -25,4 +26,23 @@ body {
 
 .is-depressed {
     background-color: black;
+=======
+.container-calc {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.calc-row {
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;    
+    justify-content: space-evenly;
+}
+
+.num-calc {
+    font-size: 5rem !important;
+>>>>>>> 3d855d61c64ea6d09896583c0f5dad4aaa3393cb
 }

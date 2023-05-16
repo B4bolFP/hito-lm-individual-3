@@ -1,45 +1,91 @@
-let runningTotal = 0;
-let buffer = "0";
-let previousOperator;
+let totalReal = 0;
+let TotalString = "0";
+let operatorAnterior;
 
 const screen = document.querySelector('.screen');
 
-function buttonClick(value) {
-    if(isNaN(value)) {
-        handleSymbol(value);
+function clickBoton(valor) {
+    if(isNaN(valor)) {
+        manejoSimbolo(valor);
     } else {
-        handleNumber(value);
+        manejoNumero(valor);
     }
-    screen.innerText = buffer;
+    screen.innerText = TotalString;
 }
 
-function handleSymbol(symbol) {
+function manejoSimbolo(symbol) {
     switch(symbol) {
         case 'C':
-            buffer = '0';
-            runningTotal = 0;
+            TotalString = '0';
+            totalReal = 0;
             break;
         case '=':
-            if (previousOperator === null) {
+            if (operatorAnterior === null) {
                 return
             }
-            flushOperation(parseInt(buffer));
-            previousOperator = null;
-            buffer = runningTotal;
-            runningTotal = 0;
+            pasarOperacion(parseInt(TotalString));
+            operatorAnterior = null;
+            TotalString = totalReal;
+            totalReal = 0;
             break;
         case '←':
-            if (buffer.length === 1) {
-                buffer = '0';
+            if (TotalString.length === 1) {
+                TotalString = '0';
             } else {
-                buffer = buffer.toString(0, buffer.length - 1)
+                TotalString = TotalString.toString(0, TotalString.length - 1)
             }
             break;
         case '+':
-        case '-':
+        case '−':
+        case 'x2':
+        case '√':
         case '×':
         case '÷':
             handleMath(symbol);
             break;
     }
 }
+
+function handleMath(symbol) {
+    if (TotalString === '0') {
+        return;
+    }
+
+    const intTotalString = parseInt(TotalString);
+
+    if (totalReal === 0) {
+        totalReal = intTotalString;
+    } else {
+        pasarOperacion(intTotalString)
+    }
+    operatorAnterior = symbol;
+    TotalString = '0';
+}
+
+function pasarOperacion(intTotalString) {
+    if (operatorAnterior === '+') {
+        totalReal += intTotalString;
+    } else if (operatorAnterior === '−') {
+        totalReal -= intTotalString;
+    } else if (operatorAnterior === '×') {
+        totalReal *= intTotalString;
+    } else if (operatorAnterior === '÷') {
+        totalReal /= intTotalString;
+    }
+}
+
+function manejoNumero(numberString) {
+    if (TotalString === '0') {
+        TotalString = numberString;
+    } else {
+        TotalString += numberString;
+    }
+}
+
+function iniciar() {
+    document.querySelector('.calc-buttons').addEventListener('click', function(event){
+        clickBoton(event.target.innerText);
+    })
+}
+
+iniciar();

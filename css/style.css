@@ -90,15 +90,15 @@ td, th {
     background-color: #000000;
 }
 
-.blck-button {
+.red-button {
     backdrop-filter: blur(5.5px);
     -webkit-backdrop-filter: blur(5.5px);
-    background: rgba(255, 255, 255, 0.75);
+    background: rgba(255, 0, 0, 0.75);
     border: 1px solid rgba(35, 35, 35, 0.1);
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(35, 35, 35, 0.1);
     color: #fff;
-    background-color: #000000;
+    background-color: #ff0000;
 }
 
 .calc-button:last-child:hover {
@@ -113,3 +113,10 @@ td, th {
 .calc-button:last-child:active {background-color: #ffef78;}
 
 .double {flex-basis: 47%;}
+
+footer {
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
